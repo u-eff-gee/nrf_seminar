@@ -1,0 +1,8 @@
+The Renaissance of the Nuclear Resonance Fluorescence Method
+
+The study of atomic absorption spectra at the end of the 19th century led to the discovery of a multitude of elements and helped to promote the theory of quantum mechanics.
+Naturally, it was also proposed later to use the resonant absorption of highly energetic photons (gamma rays), in particular the nuclear resonance fluorescence (NRF) effect, to study atomic nuclei.
+However, some experimental obstacles had to be overcome first, and only with the invention of artificial gamma-ray sources, a broad application of the technique became possible.
+Around the beginning of this millenium, the advent of quasi-monoenergetic gamma-ray sources has led to a similar revolution in nuclear spectroscopy as the conventional laser did in atomic physics.
+
+This talk will introduce the NRF method in light of its history and its relation to atomic physics, discuss the advantages and disadvantages, and present two modern applications to fundamental research and technology.
