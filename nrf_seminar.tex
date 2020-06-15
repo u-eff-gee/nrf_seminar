@@ -2,6 +2,8 @@
 \usetheme{Madrid}
 
 \usepackage[showboxes]{textpos}
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
 \input{source/footer.tex}
 
@@ -24,14 +26,15 @@
 
 \begin{frame}
     \frametitle{Interaction of Photons with Matter}
-    \begin{textblock}{15.}(0., -5.)
-        \begin{itemize}
-            \item Model of two spheres with spring
-            \item Diffraction: Study static structure
-            \item Inelastic Scattering: Study static structure and dynamics
-            \item Resonances: Study dynamics
-        \end{itemize}
-    \end{textblock}
+    \input{source/scattering.tex}
+    % \begin{textblock}{15.}(0., -5.)
+    %     \begin{itemize}
+    %         \item Model of two spheres with spring
+    %         \item Diffraction: Study static structure
+    %         \item Inelastic Scattering: Study static structure and dynamics
+    %         \item Resonances: Study dynamics
+    %     \end{itemize}
+    % \end{textblock}
 \end{frame}
 
 \begin{frame}
@@ -71,7 +74,7 @@
 
 \section{Basics}
 
-\subsection{Typical dimensions}
+\subsection{Typical Dimensions}
 
 \begin{frame}
     \frametitle{Nuclear Resonances}
@@ -116,6 +119,8 @@
     \end{textblock}
 \end{frame}
 
+\subsection{Photon Sources}
+
 \begin{frame}
     \frametitle{Photon Sources}
     \begin{textblock}{15.}(0., -5.)
@@ -127,6 +132,9 @@
 \end{frame}
 
 \section{Applications}
+
+\subsection{Fundamental Research}
+
 \begin{frame}
     \frametitle{R-Process Nucleosynthesis}
     \begin{textblock}{15.}(0., -5.)
@@ -136,6 +144,9 @@
         \end{itemize}
     \end{textblock}    
 \end{frame}
+
+\subsection{Technical Applications}
+
 \begin{frame}
     \frametitle{Isotope-selective Scanning}
 \end{frame}

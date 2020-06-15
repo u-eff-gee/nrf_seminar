@@ -1,0 +1,33 @@
+\begin{textblock}{15.}(0., -5.)
+    \begin{tikzpicture}
+        \coordinate (NUCLEUSPOSITION) at (7., 0.);
+
+        \def \AMPLITUDE {0.4}
+        \def \WAVEFORMLENGTH {5.}
+        \def \WAVELENGTH {2.5}
+        \def \INVERSESQRTTWO {0.7071067811865475}
+        \def \NUCLEONRADIUS {0.4}
+        \def \NUCLEONDISTANCE {1.6}
+        \def \SPRINGRADIUS {0.15}
+
+        \draw [very thick, orange, domain=0:\WAVEFORMLENGTH, samples=200] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r)});
+
+        \draw [very thick, black, fill=black] ($ (NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) $) circle [radius = \NUCLEONRADIUS];
+        \draw [very thick, black, fill=white] ($ (NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(-1,-1) $) circle [radius = \NUCLEONRADIUS];
+
+        \coordinate (COMTONUCLEONSURFACE) at ($0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) - \NUCLEONRADIUS*\INVERSESQRTTWO*(1,1)$);
+
+        \draw [thick, black] 
+        ($ (NUCLEUSPOSITION) - (COMTONUCLEONSURFACE) $)
+        -- ($ (NUCLEUSPOSITION) - 0.8*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)
+        -- ($ (NUCLEUSPOSITION) - 0.6*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
+        -- ($ (NUCLEUSPOSITION) - 0.4*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)  
+        -- ($ (NUCLEUSPOSITION) - 0.2*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
+        -- ($ (NUCLEUSPOSITION)                             + \SPRINGRADIUS*(1,-1) $)  
+        -- ($ (NUCLEUSPOSITION) + 0.2*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
+        -- ($ (NUCLEUSPOSITION) + 0.4*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)  
+        -- ($ (NUCLEUSPOSITION) + 0.6*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
+        -- ($ (NUCLEUSPOSITION) + 0.8*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)   
+        -- ($ (NUCLEUSPOSITION) + (COMTONUCLEONSURFACE) $);
+    \end{tikzpicture}
+\end{textblock}
