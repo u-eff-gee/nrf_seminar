@@ -1,8 +1,8 @@
 The Renaissance of the Nuclear Resonance Fluorescence Method
 
-The study of atomic absorption spectra at the end of the 19th century led to the discovery of a multitude of elements and helped to promote the theory of quantum mechanics.
-Naturally, it was also proposed later to use the resonant absorption of highly energetic photons (gamma rays), in particular the nuclear resonance fluorescence (NRF) effect, to study atomic nuclei.
-However, some experimental obstacles had to be overcome first, and only with the invention of artificial gamma-ray sources, a broad application of the technique became possible.
-Around the beginning of this millenium, the advent of quasi-monoenergetic gamma-ray sources has led to a similar revolution in nuclear spectroscopy as the conventional laser did in atomic physics.
+The study of atomic absorption spectra at the end of the 19th century led to the discovery of a multitude of chemical elements and helped to validate quantum mechanics.
+Naturally, it was later proposed to use the resonant absorption of highly-energetic photons (gamma rays) to study atomic nuclei.
+Some experimental obstacles had to be overcome first: only with the invention of artificial gamma-ray sources, capable of producing photons in large quantities, did the broad application of the nuclear resonance fluorescence (NRF) technique become possible.
+Around the beginning of the 21st century, the advent of quasi-monoenergetic gamma-ray sources led to a revolution in nuclear spectroscopy similar to the one which took place in atomic physics with the development of lasers.
 
-This talk will introduce the NRF method in light of its history and its relation to atomic physics, discuss the advantages and disadvantages, and present two modern applications to fundamental research and technology.
+This talk will introduce the NRF method in the context of its history and its relation with atomic physics, discuss the advantages and disadvantages, and present two modern applications to fundamental research and technology.
