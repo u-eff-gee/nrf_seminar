@@ -1,23 +1,67 @@
 \begin{textblock}{15.}(0., -5.)
     \begin{tikzpicture}
-        \coordinate (NUCLEUSPOSITION) at (7., 0.);
-
-        \def \AMPLITUDE {0.4}
-        \def \WAVEFORMLENGTH {5.}
-        \def \WAVELENGTH {2.5}
+        %%% Definitions
+        %% Mathematical constants
         \def \INVERSESQRTTWO {0.7071067811865475}
-        \def \NUCLEONRADIUS {0.4}
-        \def \NUCLEONDISTANCE {1.6}
-        \def \SPRINGRADIUS {0.15}
+        \def \NWAVEFORMSAMPLES {200}
 
-        \draw [very thick, orange, domain=0:\WAVEFORMLENGTH, samples=200] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r)});
+        %% Labels
+        \def \LABELLOWSTART {-1.}
+        \def \LABELLOWSTOP {-2.}
+        \def \LABELUPSTART {-1.}
+        \def \LABELUPSTOP {-1.5}
 
+        %% Schematic model of the nucleus
+        \coordinate (NUCLEUSPOSITION) at (6., 0.);
+
+        \def \NUCLEONRADIUS {0.3}
+        \def \NUCLEONDISTANCE {1.2}
+        \def \SPRINGRADIUS {0.12}
+
+        %% Incoming EM wave
+        \def \INAMPLITUDE {0.5}
+        \def \INWAVEFORMLENGTH {5.}
+        \def \INWAVELENGTH {2.5}
+        \def \INWAVESTART {0.}
+
+        %% Outgoing EM wave(s)
+        \def \OUTHORAMPLITUDE {0.2}
+        \def \OUTHORWAVEFORMLENGTH {3.}
+        \def \OUTHORWAVELENGTH {\INWAVELENGTH}
+        \def \OUTHORWAVESTART {7.}
+
+        \def \OUTMIDAMPLITUDE {0.1}
+        \def \OUTMIDWAVEFORMLENGTH {3.}
+        \def \OUTMIDWAVELENGTH {\INWAVELENGTH}
+        \def \OUTMIDWAVESTART {7.}
+
+        \def \OUTVERAMPLITUDE {0.2}
+        \def \OUTVERWAVEFORMLENGTH {3.}
+        \def \OUTVERWAVELENGTH {\INWAVELENGTH}
+        \def \OUTVERWAVESTART {7.}
+
+        %%% Drawing
+        %% Incoming EM wave
+        \draw [very thick, orange, domain=\INWAVESTART:\INWAVESTART+\INWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INAMPLITUDE*sin(\INWAVEFORMLENGTH/\INWAVELENGTH*2*pi/4*\x r)});
+
+        % Label
+        \draw [very thick, black] (\INWAVESTART, \LABELLOWSTART) -- (\INWAVESTART, \LABELLOWSTOP);
+        \draw [very thick, black] (\INWAVESTART+\INWAVELENGTH, \LABELLOWSTART) -- (\INWAVESTART+\INWAVELENGTH, \LABELLOWSTOP);
+        \draw [very thick, black] (\INWAVESTART, \LABELLOWSTOP) -- (\INWAVESTART + \INWAVELENGTH, \LABELLOWSTOP);
+        \draw (\INWAVESTART+0.5*\INWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda$};
+
+        %% Nucleus
+        % Boundary
+        \draw [very thick, black, dashed] (NUCLEUSPOSITION) circle [radius=\NUCLEONRADIUS+0.5*\NUCLEONDISTANCE];
+        % Proton
         \draw [very thick, black, fill=black] ($ (NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) $) circle [radius = \NUCLEONRADIUS];
+        % Neutron
         \draw [very thick, black, fill=white] ($ (NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(-1,-1) $) circle [radius = \NUCLEONRADIUS];
 
         \coordinate (COMTONUCLEONSURFACE) at ($0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) - \NUCLEONRADIUS*\INVERSESQRTTWO*(1,1)$);
 
-        \draw [thick, black] 
+        % Spring
+        \draw [very thick, black] 
         ($ (NUCLEUSPOSITION) - (COMTONUCLEONSURFACE) $)
         -- ($ (NUCLEUSPOSITION) - 0.8*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)
         -- ($ (NUCLEUSPOSITION) - 0.6*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
@@ -29,5 +73,24 @@
         -- ($ (NUCLEUSPOSITION) + 0.6*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(-1,1) $)  
         -- ($ (NUCLEUSPOSITION) + 0.8*(COMTONUCLEONSURFACE) + \SPRINGRADIUS*(1,-1) $)   
         -- ($ (NUCLEUSPOSITION) + (COMTONUCLEONSURFACE) $);
+
+        % Label for size of nucleus
+        \draw [very thick, black] ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) -0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTART*(0,1) $) -- ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) - 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
+        \draw [very thick, black] ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTART*(0,1) $) -- ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
+        \draw [very thick, black] ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) - 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $) -- ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
+        \draw ($ (NUCLEUSPOSITION) + \LABELLOWSTOP*(0,1)$) node[anchor=north] {$R$};
+
+        % Label for size of nucleon
+        \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTART*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
+        \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTART*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
+        \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
+        \draw ($ (NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \LABELUPSTOP*(0,1) $) node[anchor=north] {$r$};
+
+        %% Outgoing EM wave
+        \draw [very thick, orange, domain=\OUTHORWAVESTART:\OUTHORWAVESTART+\OUTHORWAVEFORMLENGTH, samples=200] plot (\x, {\OUTHORAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTHORWAVELENGTH*2*pi/4*\x r)});
+
+        \draw [very thick, orange, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTMIDWAVESTART:\OUTMIDWAVESTART+\OUTMIDWAVEFORMLENGTH, samples=200] plot (\x, {\OUTMIDAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTMIDWAVELENGTH*2*pi/4*\x r)});
+
+        \draw [very thick, orange, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTVERWAVESTART:\OUTVERWAVESTART+\OUTVERWAVEFORMLENGTH, samples=200] plot (\x, {\OUTVERAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTVERWAVELENGTH*2*pi/4*\x r)});
     \end{tikzpicture}
 \end{textblock}
