@@ -6,3 +6,6 @@
 *.pdf
 *.snm
 *.toc
+
+# python output
+figures/python/*.pdf
