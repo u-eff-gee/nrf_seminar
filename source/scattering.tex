@@ -1,9 +1,22 @@
+\def \SLIDEINRED {2}
+\def \SLIDEOUTRED {3}
+\def \SLIDERED {4}
+\def \SLIDEGREEN {5}
+\def \SLIDEBLUE {6}
+\def \SLIDEVIOLET {7}
+
 \begin{textblock}{15.}(0., -5.)
     \begin{tikzpicture}
         %%% Definitions
         %% Mathematical constants
         \def \INVERSESQRTTWO {0.7071067811865475}
-        \def \NWAVEFORMSAMPLES {200}
+        \def \NWAVEFORMSAMPLES {400}
+
+        %% Colors
+        \def \BLUE {blue}
+        \def \GREEN {green}
+        \def \VIOLET {violet}
+        \def \RED {red}
 
         %% Labels
         \def \LABELLOWSTART {-1.}
@@ -19,36 +32,131 @@
         \def \SPRINGRADIUS {0.12}
 
         %% Incoming EM wave
-        \def \INAMPLITUDE {0.5}
-        \def \INWAVEFORMLENGTH {5.}
-        \def \INWAVELENGTH {2.5}
-        \def \INWAVESTART {0.}
+        \def \INREDAMPLITUDE {0.6}
+        \def \INREDWAVEFORMLENGTH {5.}
+        \def \INREDWAVELENGTH {4.}
+        \def \INREDWAVESTART {0.}
+
+        \def \INGREENAMPLITUDE {0.6}
+        \def \INGREENWAVEFORMLENGTH {5.}
+        \def \INGREENWAVELENGTH {1.8}
+        \def \INGREENWAVESTART {0.}
+
+        \def \INBLUEAMPLITUDE {0.6}
+        \def \INBLUEWAVEFORMLENGTH {5.}
+        \def \INBLUEWAVELENGTH {0.6}
+        \def \INBLUEWAVESTART {0.}
+
+        \def \INVIOLETAMPLITUDE {0.6}
+        \def \INVIOLETWAVEFORMLENGTH {5.}
+        \def \INVIOLETWAVELENGTH {0.3}
+        \def \INVIOLETWAVESTART {0.}
 
         %% Outgoing EM wave(s)
-        \def \OUTHORAMPLITUDE {0.2}
-        \def \OUTHORWAVEFORMLENGTH {3.}
-        \def \OUTHORWAVELENGTH {\INWAVELENGTH}
-        \def \OUTHORWAVESTART {7.}
+        \def \OUTREDHORAMPLITUDE {0.2}
+        \def \OUTREDHORWAVEFORMLENGTH {3.}
+        \def \OUTREDHORWAVELENGTH {\INREDWAVELENGTH}
+        \def \OUTREDHORWAVESTART {7.}
 
-        \def \OUTMIDAMPLITUDE {0.1}
-        \def \OUTMIDWAVEFORMLENGTH {3.}
-        \def \OUTMIDWAVELENGTH {\INWAVELENGTH}
-        \def \OUTMIDWAVESTART {7.}
+        \def \OUTREDMIDAMPLITUDE {0.2}
+        \def \OUTREDMIDWAVEFORMLENGTH {3.}
+        \def \OUTREDMIDWAVELENGTH {\INREDWAVELENGTH}
+        \def \OUTREDMIDWAVESTART {7.}
 
-        \def \OUTVERAMPLITUDE {0.2}
-        \def \OUTVERWAVEFORMLENGTH {3.}
-        \def \OUTVERWAVELENGTH {\INWAVELENGTH}
-        \def \OUTVERWAVESTART {7.}
+        \def \OUTREDVERAMPLITUDE {0.2}
+        \def \OUTREDVERWAVEFORMLENGTH {3.}
+        \def \OUTREDVERWAVELENGTH {\INREDWAVELENGTH}
+        \def \OUTREDVERWAVESTART {7.}
+
+        \def \OUTGREENHORAMPLITUDE {0.5}
+        \def \OUTGREENHORWAVEFORMLENGTH {3.}
+        \def \OUTGREENHORWAVELENGTH {\INGREENWAVELENGTH}
+        \def \OUTGREENHORWAVESTART {7.}
+
+        \def \OUTGREENMIDAMPLITUDE {0.}
+        \def \OUTGREENMIDWAVEFORMLENGTH {3.}
+        \def \OUTGREENMIDWAVELENGTH {\INGREENWAVELENGTH}
+        \def \OUTGREENMIDWAVESTART {7.}
+
+        \def \OUTGREENVERAMPLITUDE {0.1}
+        \def \OUTGREENVERWAVEFORMLENGTH {3.}
+        \def \OUTGREENVERWAVELENGTH {\INGREENWAVELENGTH}
+        \def \OUTGREENVERWAVESTART {7.}
+
+        \def \OUTBLUEHORAMPLITUDE {0.5}
+        \def \OUTBLUEHORWAVEFORMLENGTH {3.}
+        \def \OUTBLUEHORWAVELENGTH {\INBLUEWAVELENGTH}
+        \def \OUTBLUEHORWAVESTART {7.}
+
+        \def \OUTBLUEMIDAMPLITUDE {0.}
+        \def \OUTBLUEMIDWAVEFORMLENGTH {3.}
+        \def \OUTBLUEMIDWAVELENGTH {\INBLUEWAVELENGTH}
+        \def \OUTBLUEMIDWAVESTART {7.}
+
+        \def \OUTBLUEVERAMPLITUDE {0.1}
+        \def \OUTBLUEVERWAVEFORMLENGTH {3.}
+        \def \OUTBLUEVERWAVELENGTH {\INBLUEWAVELENGTH}
+        \def \OUTBLUEVERWAVESTART {7.}
+
+        \def \OUTVIOLETHORAMPLITUDE {0.6}
+        \def \OUTVIOLETHORWAVEFORMLENGTH {3.}
+        \def \OUTVIOLETHORWAVELENGTH {\INVIOLETWAVELENGTH}
+        \def \OUTVIOLETHORWAVESTART {7.}
+
+        \def \OUTVIOLETMIDAMPLITUDE {0.}
+        \def \OUTVIOLETMIDWAVEFORMLENGTH {3.}
+        \def \OUTVIOLETMIDWAVELENGTH {\INVIOLETWAVELENGTH}
+        \def \OUTVIOLETMIDWAVESTART {7.}
+
+        \def \OUTVIOLETVERAMPLITUDE {0.}
+        \def \OUTVIOLETVERWAVEFORMLENGTH {3.}
+        \def \OUTVIOLETVERWAVELENGTH {\INVIOLETWAVELENGTH}
+        \def \OUTVIOLETVERWAVESTART {7.}
 
         %%% Drawing
         %% Incoming EM wave
-        \draw [very thick, orange, domain=\INWAVESTART:\INWAVESTART+\INWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INAMPLITUDE*sin(\INWAVEFORMLENGTH/\INWAVELENGTH*2*pi/4*\x r)});
+        \visible<\SLIDEINRED-\SLIDERED>{
+            \draw [very thick, \RED, domain=\INREDWAVESTART:\INREDWAVESTART+\INREDWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INREDAMPLITUDE*sin(\INREDWAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r)});
+        }
+
+        \visible<\SLIDEGREEN>{
+            \draw [very thick, \GREEN, domain=\INGREENWAVESTART:\INGREENWAVESTART+\INGREENWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INGREENAMPLITUDE*sin(\INGREENWAVEFORMLENGTH/\INGREENWAVELENGTH*2*pi/4*\x r)});
+        }
+        \visible<\SLIDEBLUE>{
+           \draw [very thick, \BLUE, domain=\INBLUEWAVESTART:\INBLUEWAVESTART+\INBLUEWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INBLUEAMPLITUDE*sin(\INBLUEWAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r)});
+        }
+        \visible<\SLIDEVIOLET>{
+            \draw [very thick, \VIOLET, domain=\INVIOLETWAVESTART:\INVIOLETWAVESTART+\INVIOLETWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\INVIOLETAMPLITUDE*sin(\INVIOLETWAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r)});
+        }
 
         % Label
-        \draw [very thick, black] (\INWAVESTART, \LABELLOWSTART) -- (\INWAVESTART, \LABELLOWSTOP);
-        \draw [very thick, black] (\INWAVESTART+\INWAVELENGTH, \LABELLOWSTART) -- (\INWAVESTART+\INWAVELENGTH, \LABELLOWSTOP);
-        \draw [very thick, black] (\INWAVESTART, \LABELLOWSTOP) -- (\INWAVESTART + \INWAVELENGTH, \LABELLOWSTOP);
-        \draw (\INWAVESTART+0.5*\INWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda$};
+        \visible<\SLIDEINRED-\SLIDERED>{
+            \draw [very thick, black] (\INREDWAVESTART, \LABELLOWSTART) -- (\INREDWAVESTART, \LABELLOWSTOP);
+            \draw [very thick, black] (\INREDWAVESTART+\INREDWAVELENGTH, \LABELLOWSTART) -- (\INREDWAVESTART+\INREDWAVELENGTH, \LABELLOWSTOP);
+            \draw [very thick, black] (\INREDWAVESTART, \LABELLOWSTOP) -- (\INREDWAVESTART + \INREDWAVELENGTH, \LABELLOWSTOP);
+            \draw (\INREDWAVESTART+0.5*\INREDWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda \gg 2R$};
+        }
+
+        \visible<\SLIDEGREEN>{
+            \draw [very thick, black] (\INGREENWAVESTART, \LABELLOWSTART) -- (\INGREENWAVESTART, \LABELLOWSTOP);
+            \draw [very thick, black] (\INGREENWAVESTART+\INGREENWAVELENGTH, \LABELLOWSTART) -- (\INGREENWAVESTART+\INGREENWAVELENGTH, \LABELLOWSTOP);
+            \draw [very thick, black] (\INGREENWAVESTART, \LABELLOWSTOP) -- (\INGREENWAVESTART + \INGREENWAVELENGTH, \LABELLOWSTOP);
+            \draw (\INGREENWAVESTART+0.5*\INGREENWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda \approx 2R$};
+        }
+
+        \visible<\SLIDEBLUE>{
+            \draw [very thick, black] (\INBLUEWAVESTART, \LABELLOWSTART) -- (\INBLUEWAVESTART, \LABELLOWSTOP);
+            \draw [very thick, black] (\INBLUEWAVESTART+\INBLUEWAVELENGTH, \LABELLOWSTART) -- (\INBLUEWAVESTART+\INBLUEWAVELENGTH, \LABELLOWSTOP);
+            \draw [very thick, black] (\INBLUEWAVESTART, \LABELLOWSTOP) -- (\INBLUEWAVESTART + \INBLUEWAVELENGTH, \LABELLOWSTOP);
+            \draw (\INBLUEWAVESTART+0.5*\INBLUEWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda \approx 2r$};
+        }
+
+        \visible<\SLIDEVIOLET>{
+            \draw [very thick, black] (\INVIOLETWAVESTART, \LABELLOWSTART) -- (\INVIOLETWAVESTART, \LABELLOWSTOP);
+            \draw [very thick, black] (\INVIOLETWAVESTART+\INVIOLETWAVELENGTH, \LABELLOWSTART) -- (\INVIOLETWAVESTART+\INVIOLETWAVELENGTH, \LABELLOWSTOP);
+            \draw [very thick, black] (\INVIOLETWAVESTART, \LABELLOWSTOP) -- (\INVIOLETWAVESTART + \INVIOLETWAVELENGTH, \LABELLOWSTOP);
+            \draw (\INVIOLETWAVESTART+0.5*\INVIOLETWAVELENGTH, \LABELLOWSTOP) node[anchor=north] {$\lambda \ll 2r$};
+        }
 
         %% Nucleus
         % Boundary
@@ -78,19 +186,71 @@
         \draw [very thick, black] ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) -0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTART*(0,1) $) -- ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) - 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
         \draw [very thick, black] ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTART*(0,1) $) -- ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
         \draw [very thick, black] ($(NUCLEUSPOSITION) - \NUCLEONRADIUS*(1,0) - 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $) -- ($(NUCLEUSPOSITION) + \NUCLEONRADIUS*(1,0) + 0.5*\NUCLEONDISTANCE*(1,0) + \LABELLOWSTOP*(0,1) $);
-        \draw ($ (NUCLEUSPOSITION) + \LABELLOWSTOP*(0,1)$) node[anchor=north] {$R$};
+        \draw ($ (NUCLEUSPOSITION) + \LABELLOWSTOP*(0,1)$) node[anchor=north] {$2R$};
 
         % Label for size of nucleon
         \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTART*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
         \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTART*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
         \draw [very thick, black] ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) - \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$) -- ($(NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \NUCLEONRADIUS*(1,0) + \LABELUPSTOP*(0,1)$);
-        \draw ($ (NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \LABELUPSTOP*(0,1) $) node[anchor=north] {$r$};
+        \draw ($ (NUCLEUSPOSITION) - 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,0) + \LABELUPSTOP*(0,1) $) node[anchor=north] {$2r$};
 
         %% Outgoing EM wave
-        \draw [very thick, orange, domain=\OUTHORWAVESTART:\OUTHORWAVESTART+\OUTHORWAVEFORMLENGTH, samples=200] plot (\x, {\OUTHORAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTHORWAVELENGTH*2*pi/4*\x r)});
+        \visible<\SLIDEOUTRED-\SLIDERED>{
+            \draw [very thick, \RED, domain=\OUTREDHORWAVESTART:\OUTREDHORWAVESTART+\OUTREDHORWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTREDHORAMPLITUDE*sin(\INREDWAVEFORMLENGTH/\OUTREDHORWAVELENGTH*2*pi/4*\x r)});
 
-        \draw [very thick, orange, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTMIDWAVESTART:\OUTMIDWAVESTART+\OUTMIDWAVEFORMLENGTH, samples=200] plot (\x, {\OUTMIDAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTMIDWAVELENGTH*2*pi/4*\x r)});
+            \draw [very thick, \RED, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTREDMIDWAVESTART:\OUTREDMIDWAVESTART+\OUTREDMIDWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTREDMIDAMPLITUDE*sin(\INREDWAVEFORMLENGTH/\OUTREDMIDWAVELENGTH*2*pi/4*\x r)});
 
-        \draw [very thick, orange, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTVERWAVESTART:\OUTVERWAVESTART+\OUTVERWAVEFORMLENGTH, samples=200] plot (\x, {\OUTVERAMPLITUDE*sin(\INWAVEFORMLENGTH/\OUTVERWAVELENGTH*2*pi/4*\x r)});
+            \draw [very thick, \RED, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTREDVERWAVESTART:\OUTREDVERWAVESTART+\OUTREDVERWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTREDVERAMPLITUDE*sin(\INREDWAVEFORMLENGTH/\OUTREDVERWAVELENGTH*2*pi/4*\x r)});
+        }
+
+        \visible<\SLIDEGREEN>{
+            \draw [very thick, \GREEN, domain=\OUTGREENHORWAVESTART:\OUTGREENHORWAVESTART+\OUTGREENHORWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTGREENHORAMPLITUDE*sin(\INGREENWAVEFORMLENGTH/\OUTGREENHORWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, dashed, \GREEN, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTGREENMIDWAVESTART:\OUTGREENMIDWAVESTART+\OUTGREENMIDWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTGREENMIDAMPLITUDE*sin(\INGREENWAVEFORMLENGTH/\OUTGREENMIDWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, \GREEN, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTGREENVERWAVESTART:\OUTGREENVERWAVESTART+\OUTGREENVERWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTGREENVERAMPLITUDE*sin(\INGREENWAVEFORMLENGTH/\OUTGREENVERWAVELENGTH*2*pi/4*\x r)});
+        }
+
+        \visible<\SLIDEBLUE>{
+            \draw [very thick, \BLUE, domain=\OUTBLUEHORWAVESTART:\OUTBLUEHORWAVESTART+\OUTBLUEHORWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTBLUEHORAMPLITUDE*sin(\INBLUEWAVEFORMLENGTH/\OUTBLUEHORWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, dashed, \BLUE, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTBLUEMIDWAVESTART:\OUTBLUEMIDWAVESTART+\OUTBLUEMIDWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTBLUEMIDAMPLITUDE*sin(\INBLUEWAVEFORMLENGTH/\OUTBLUEMIDWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, \BLUE, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTBLUEVERWAVESTART:\OUTBLUEVERWAVESTART+\OUTBLUEVERWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTBLUEVERAMPLITUDE*sin(\INBLUEWAVEFORMLENGTH/\OUTBLUEVERWAVELENGTH*2*pi/4*\x r)});
+        }
+
+        \visible<\SLIDEVIOLET>{
+            \draw [very thick, \VIOLET, domain=\OUTVIOLETHORWAVESTART:\OUTVIOLETHORWAVESTART+\OUTVIOLETHORWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTVIOLETHORAMPLITUDE*sin(\INVIOLETWAVEFORMLENGTH/\OUTVIOLETHORWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, dashed, \VIOLET, rotate around={35:(NUCLEUSPOSITION)}, domain=\OUTVIOLETMIDWAVESTART:\OUTVIOLETMIDWAVESTART+\OUTVIOLETMIDWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTVIOLETMIDAMPLITUDE*sin(\INVIOLETWAVEFORMLENGTH/\OUTVIOLETMIDWAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, dashed, \VIOLET, rotate around={70:(NUCLEUSPOSITION)}, domain=\OUTVIOLETVERWAVESTART:\OUTVIOLETVERWAVESTART+\OUTVIOLETVERWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\OUTVIOLETVERAMPLITUDE*sin(\INVIOLETWAVEFORMLENGTH/\OUTVIOLETVERWAVELENGTH*2*pi/4*\x r)});
+        }
     \end{tikzpicture}
 \end{textblock}
+
+%% Angular distribution
+\def \ANGDISTX {9.5}
+\def \ANGDISTY {2.4}
+\def \ANGDISTWIDTH {5.5}
+
+\visible<\SLIDERED>{
+    \begin{textblock}{\ANGDISTWIDTH}(\ANGDISTX , \ANGDISTY)
+        \includegraphics[width=\textwidth]{figures/python/circular_aperture_one_tenth.pdf}
+    \end{textblock}
+}
+\visible<\SLIDEGREEN>{
+    \begin{textblock}{\ANGDISTWIDTH}(\ANGDISTX , \ANGDISTY)
+        \includegraphics[width=\textwidth]{figures/python/circular_aperture_one.pdf}
+    \end{textblock}
+}
+\visible<\SLIDEBLUE>{
+    \begin{textblock}{\ANGDISTWIDTH}(\ANGDISTX , \ANGDISTY)
+        \includegraphics[width=\textwidth]{figures/python/circular_aperture_one_2.pdf}
+    \end{textblock}
+}
+\visible<\SLIDEVIOLET>{
+    \begin{textblock}{\ANGDISTWIDTH}(\ANGDISTX , \ANGDISTY)
+        \includegraphics[width=\textwidth]{figures/python/circular_aperture_ten.pdf}
+    \end{textblock}
+}

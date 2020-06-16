@@ -34,8 +34,9 @@ def circ_aper_diff(theta, radius):
 
     return (2.*jv(1, x)/x)**2
 
-radius = [0.1, 1., 10.]
-filename = ['circular_aperture_one_tenth', 'circular_aperture_one', 'circular_aperture_ten']
+radius = [0.1, 1., 1., 10.]
+color = ['crimson', 'green', 'blue', 'violet']
+filename = ['circular_aperture_one_tenth', 'circular_aperture_one', 'circular_aperture_one_2', 'circular_aperture_ten']
 theta = np.linspace(-0.5*np.pi, 0.5*np.pi, 1000)
 
 diff_patt = np.zeros((len(radius), len(theta)))
@@ -44,7 +45,7 @@ for i, r in enumerate(radius):
     diff_patt[i] = circ_aper_diff(theta, r)
 
 for i, r in enumerate(radius):
-    fig, ax = plt.subplots(1,1, figsize=(4.2,4))
+    fig, ax = plt.subplots(1,1, figsize=(3.1,2.5))
     ax.set_xlabel('Scattering angle')
     ax.set_xlim(-0.5*np.pi, 0.5*np.pi)
     ax.set_xticks([-0.5*np.pi, -0.25*np.pi, 0., 0.25*np.pi, 0.5*np.pi])
@@ -52,8 +53,9 @@ for i, r in enumerate(radius):
     ax.set_ylabel('Relative Intensity')
     ax.set_ylim(0., 1.1)
     for j in range(0,i):
-        ax.plot(theta, diff_patt[j], '--', color='grey')
-    ax.plot(theta, diff_patt[i], color='darkorange')
+        ax.plot(theta, diff_patt[j], '--', color=color[j])
+    ax.plot(theta, diff_patt[i], color=color[i])
     output_file_name = filename[i] + '.pdf'
+    plt.tight_layout()
     plt.savefig(_output_dir / output_file_name)
     print('Created file \'{}\'.'.format(output_file_name))
