@@ -2,7 +2,7 @@ LATEX=pdflatex
 
 PROJECT=nrf_seminar
 LATEX_SOURCE_DIR=source/
-LATEX_SOURCE=$(addprefix ${LATEX_SOURCE_DIR}, $(addsuffix .tex, footer resonance_fluorescence scattering title))
+LATEX_SOURCE=$(addprefix ${LATEX_SOURCE_DIR}, $(addsuffix .tex, footer resonance_fluorescence resonance_fluorescence_atom scattering title))
 LATEX_OUTPUT=$(addprefix ${PROJECT}, .aux .log .nav .out .pdf .snm .toc)
 
 PYTHON=python
