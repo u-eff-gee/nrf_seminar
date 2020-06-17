@@ -31,12 +31,12 @@
         \coordinate (ATOMPOSITION) at (\ATOMX, 0.);
 
         %% Nucleus
-        \def \NUCLEUSRADIUS {0.2}
+        \def \NUCLEUSRADIUS {0.4}
 
         %%% Drawing
         %% Atom
         % Nucleus
-        \draw [very thick, black, fill=black] (ATOMPOSITION) circle [radius = \NUCLEUSRADIUS];
+        \draw [very thick, black, dashed] (ATOMPOSITION) circle [radius = \NUCLEUSRADIUS];
 
         % Orbitals
         \draw [very thick, black] (ATOMPOSITION) circle [radius = \ORBITALINRADIUS];
