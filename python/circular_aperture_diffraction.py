@@ -34,9 +34,9 @@ def circ_aper_diff(theta, radius):
 
     return (2.*jv(1, x)/x)**2
 
-radius = [0.1, 1., 1., 10.]
-color = ['crimson', 'green', 'blue', 'violet']
-filename = ['circular_aperture_one_tenth', 'circular_aperture_one', 'circular_aperture_one_2', 'circular_aperture_ten']
+radius = [0.1, 0.1, 1., 1., 10.]
+color = ['crimson', 'crimson', 'green', 'blue', 'violet']
+filename = ['circular_aperture_one_tenth', 'circular_aperture_one_tenth_2', 'circular_aperture_one', 'circular_aperture_one_2', 'circular_aperture_ten']
 theta = np.linspace(-0.5*np.pi, 0.5*np.pi, 1000)
 
 diff_patt = np.zeros((len(radius), len(theta)))
