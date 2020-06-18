@@ -1,0 +1,177 @@
+\def \SLIDEIN {1}
+\def \SLIDETRANS {2}
+\def \SLIDENRF {3}
+\def \SLIDEDETECTORS {4}
+\def \SLIDERESOLUTIONONE {5}
+\def \SLIDERESOLUTIONTWO {6}
+\def \SLIDERESOLUTIONTHREE {7}
+\def \SLIDERESOLUTIONFOUR {8}
+
+\begin{textblock}{15.}(0., -5.)
+    \begin{tikzpicture}
+        %%% Definitions
+        %% Mathematical constants
+        \def \NWAVEFORMSAMPLES {50}
+
+        %% Incoming EM wave
+        \def \AMPLITUDE {0.4}
+        \def \WAVEFORMLENGTH {2.5}
+        \def \INWAVESTART {0.}
+        \def \INREDY {1.5}
+        \def \INREDWAVELENGTH {1.4}
+        \def \INORANGEY {0.75}
+        \def \INORANGEWAVELENGTH {1.2}
+        \def \INGREENY {0.}
+        \def \INGREENWAVELENGTH {1.0}
+        \def \INBLUEY {-0.75}
+        \def \INBLUEWAVELENGTH {0.8}
+        \def \INVIOLETY {-1.5}
+        \def \INVIOLETWAVELENGTH {0.6}
+
+        %% Transmitted EM wave
+        \def \TRANSWAVESTART {7.}
+
+        %% Scattered EM wave
+        \def \SCATTERINGANGLE {-75}
+        \def \SCAWAVEFORMLENGTH {4.}
+
+        %% States
+        \def \GROUNDSTATEY {-2.}
+        \def \INTERMEDIATESTATEY {-0.5}
+        \def \EXCITEDSTATEY {2.}
+        \def \STATEXSTART {3.}
+        \def \STATEX {3.}
+
+        %% Transitions
+        \def \EXCITATIONX {\STATEXSTART+0.2*\STATEX}
+        \def \ELASTICX {\STATEXSTART+0.5*\STATEX}
+        \def \INELASTICX {\STATEXSTART+0.8*\STATEX}
+
+        %% Detector
+        \def \DETECTORLENGTH {2.}
+        \def \DETECTORRADIUS {0.5}
+        \def \ABSDETECTORX {10.}
+        \def \ABSDETECTORY {0.}
+        \def \SCADETECTORX {6.}
+        \def \SCADETECTORY {-4.}
+
+        %%% Drawing
+        %% Incoming EM waves
+        \draw [very thick, \RED, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \INREDY});
+
+        \draw [very thick, \ORANGE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INORANGEY});
+
+        \draw [very thick, \GREEN, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INGREENWAVELENGTH*2*pi/4*\x r) + \INGREENY});
+
+        \draw [very thick, \BLUE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r) + \INBLUEY});
+
+        \draw [very thick, \VIOLET, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r) + \INVIOLETY});
+
+        %% Transmitted EM waves
+        \visible<\SLIDETRANS->{
+            \draw [very thick, \RED, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \INREDY});
+
+            \draw [very thick, \ORANGE, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INORANGEY});
+
+            \draw [very thick, \BLUE, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r) + \INBLUEY});
+
+            \draw [very thick, \VIOLET, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r) + \INVIOLETY});
+        }
+
+        %% States
+        % Ground state
+        \draw[very thick, black] (\STATEXSTART, \GROUNDSTATEY) -- (\STATEXSTART+\STATEX, \GROUNDSTATEY);
+        \draw (\STATEXSTART + \STATEX, \GROUNDSTATEY) node[anchor=west] {$E_0$};
+
+        % Intermediate state
+        \draw[very thick, black] (\STATEXSTART, \INTERMEDIATESTATEY) -- (\STATEXSTART+\STATEX, \INTERMEDIATESTATEY);
+        \draw (\STATEXSTART + \STATEX, \INTERMEDIATESTATEY) node[anchor=west] {$E_i$};
+
+        % Excited state
+        \draw[very thick, black] (\STATEXSTART, \EXCITEDSTATEY) -- (\STATEXSTART+\STATEX, \EXCITEDSTATEY);
+        \draw (\STATEXSTART + \STATEX, \EXCITEDSTATEY) node[anchor=west] {$E_x$};
+
+        %% Transitions
+        % Excitation
+        \draw[->, ultra thick, black] (\EXCITATIONX, \GROUNDSTATEY) -- (\EXCITATIONX, \EXCITEDSTATEY);
+
+        \visible<\SLIDENRF->{
+            % Direct ground-state decay
+            \draw[->, ultra thick, black] (\ELASTICX, \EXCITEDSTATEY) -- (\ELASTICX, \GROUNDSTATEY);
+
+            \draw [very thick, \GREEN, rotate around={\SCATTERINGANGLE:(\ELASTICX, 0.)}, domain=\ELASTICX:\ELASTICX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r)});
+
+            % Decay via intermediate states
+            \draw[->, ultra thick, black] (\INELASTICX, \EXCITEDSTATEY) -- (\INELASTICX, \INTERMEDIATESTATEY);
+
+            \draw [very thick, \ORANGE, rotate around={\SCATTERINGANGLE:(\INELASTICX, \INTERMEDIATESTATEY + 0.5*(\EXCITEDSTATEY-\INTERMEDIATESTATEY))}, domain=\INELASTICX:\INELASTICX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INTERMEDIATESTATEY + 0.5*(\EXCITEDSTATEY-\INTERMEDIATESTATEY)});
+
+            \draw[->, ultra thick, black] (\INELASTICX, \INTERMEDIATESTATEY) -- (\INELASTICX, \GROUNDSTATEY);
+
+            \draw [very thick, \RED, rotate around={\SCATTERINGANGLE:(\INELASTICX, \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY))}, domain=\INELASTICX:\INELASTICX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY)});
+        }
+
+        \visible<\SLIDEDETECTORS->{
+            %% Absorption detector
+            \draw[very thick, black, fill=gray]     (\ABSDETECTORX, \ABSDETECTORY) 
+            -- (\ABSDETECTORX, \ABSDETECTORY + \DETECTORRADIUS)
+            -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY + \DETECTORRADIUS)
+            -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY - \DETECTORRADIUS)
+            -- (\ABSDETECTORX, \ABSDETECTORY - \DETECTORRADIUS)
+            -- (\ABSDETECTORX, \ABSDETECTORY);
+
+            %% Scattering detector
+            \draw[very thick, black, rotate around={\SCATTERINGANGLE:(\SCADETECTORX, \SCADETECTORY)}, fill=gray]     (\SCADETECTORX, \SCADETECTORY) 
+            -- (\SCADETECTORX, \SCADETECTORY + \DETECTORRADIUS)
+            -- (\SCADETECTORX + \DETECTORLENGTH, \SCADETECTORY + \DETECTORRADIUS)
+            -- (\SCADETECTORX + \DETECTORLENGTH, \SCADETECTORY - \DETECTORRADIUS)
+            -- (\SCADETECTORX, \SCADETECTORY - \DETECTORRADIUS)
+            -- (\SCADETECTORX, \SCADETECTORY);
+        }
+    \end{tikzpicture}
+\end{textblock}
+
+\def \SPECTRUMWIDTH {5.5}
+\def \SPECTRUMY {2.6}
+\def \SCASPECTRUMX {0.}
+\def \TRASPECTRUMX {9.5}
+
+\visible<\SLIDERESOLUTIONONE>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_001.pdf}
+    \end{textblock}
+
+    \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/transmission_001.pdf}
+    \end{textblock}
+}
+
+\visible<\SLIDERESOLUTIONTWO>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_005.pdf}
+    \end{textblock}
+
+    \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/transmission_005.pdf}
+    \end{textblock}
+}
+
+\visible<\SLIDERESOLUTIONTHREE>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_01.pdf}
+    \end{textblock}
+
+    \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/transmission_01.pdf}
+    \end{textblock}
+}
+
+\visible<\SLIDERESOLUTIONFOUR>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_01.pdf}
+    \end{textblock}
+
+    \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/transmission_03.pdf}
+    \end{textblock}
+}
