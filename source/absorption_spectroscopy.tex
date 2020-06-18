@@ -124,10 +124,12 @@
 
         %% Transitions
 
-        \visible<\SLIDENRF-\SLIDEALTERNATIVERECAP>{
+        \visible<\SLIDETRANS-\SLIDEALTERNATIVERECAP>{    
             % Excitation
             \draw[->, ultra thick, black] (\EXCITATIONX, \GROUNDSTATEY) -- (\EXCITATIONX, \EXCITEDSTATEY);
-            
+        }
+
+        \visible<\SLIDENRF-\SLIDEALTERNATIVERECAP>{    
             % Direct ground-state decay
             \draw[->, ultra thick, black] (\ELASTICX, \EXCITEDSTATEY) -- (\ELASTICX, \GROUNDSTATEY);
 
@@ -177,7 +179,7 @@
 
         \visible<\SLIDEDETECTORS->{
                 %% Absorption detector
-                \visible<\SLIDEALTERNATIVE>{
+                \visible<-\SLIDEALTERNATIVE>{
                 \draw[very thick, black, fill=gray]     (\ABSDETECTORX, \ABSDETECTORY) 
                 -- (\ABSDETECTORX, \ABSDETECTORY + \DETECTORRADIUS)
                 -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY + \DETECTORRADIUS)
