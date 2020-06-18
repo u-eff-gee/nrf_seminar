@@ -1,3 +1,18 @@
+    % This file is part of nrf_seminar.
+
+    % nrf_seminar is free software: you can redistribute it and/or modify
+    % it under the terms of the GNU General Public License as published by
+    % the Free Software Foundation, either version 3 of the License, or
+    % (at your option) any later version.
+
+    % nrf_seminar is distributed in the hope that it will be useful,
+    % but WITHOUT ANY WARRANTY; without even the implied warranty of
+    % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    % GNU General Public License for more details.
+
+    % You should have received a copy of the GNU General Public License
+    % along with nrf_seminar.  If not, see <https://www.gnu.org/licenses/>.
+
 \def \SLIDEINRED {2}
 \def \SLIDEOUTRED {3}
 \def \SLIDERED {4}
@@ -15,7 +30,7 @@
         %%% Definitions
         %% Mathematical constants
         \def \INVERSESQRTTWO {0.7071067811865475}
-        \def \NWAVEFORMSAMPLES {200}
+        \def \NWAVEFORMSAMPLES {50}
 
         %% Labels
         \def \LABELLOWSTART {-1.}
@@ -194,7 +209,7 @@
             \draw [->, very thick, black] ($(NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) + (SCATTEREDNUCLEONDISPLACEMENT) + \NUCLEONRADIUS*\INVERSESQRTTWO*(1,-1) $) -- ($(NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(1,1) + (SCATTEREDNUCLEONDISPLACEMENT) + \NUCLEONRADIUS*\INVERSESQRTTWO*(6,-6) $);
         }
         % Neutron
-        \visible<-\SLIDEINORANGE, \SLIDEEMITORANGE-\SLIDEVIOLET>{
+        \visible<-\SLIDEINORANGE, \SLIDEEMITORANGE-\SLIDECOMPTON>{
             \draw [very thick, black, fill=white] ($ (NUCLEUSPOSITION) + 0.5*\NUCLEONDISTANCE*\INVERSESQRTTWO*(-1,-1) $) circle [radius = \NUCLEONRADIUS];
         }
         \visible<\SLIDEEXCORANGE>{

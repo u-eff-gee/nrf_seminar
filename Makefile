@@ -28,4 +28,5 @@ ${PYTHON_FIGURES}: ${PYTHON_SOURCE}
 
 clean:
 	rm -f ${LATEX_OUTPUT}
-	rm -f ${PYTHON_FIGURES}
+	rm -f ${PYTHON_FIGURES_DIR}*
+	rm -rf ${PYTHON_SOURCE_DIR}__pycache__
