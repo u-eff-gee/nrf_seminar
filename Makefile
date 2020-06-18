@@ -9,7 +9,7 @@ PYTHON=python
 PYTHON_SOURCE_DIR=python/
 PYTHON_SOURCE=$(addprefix ${PYTHON_SOURCE_DIR}, $(addsuffix .py, circular_aperture_diffraction doppler_broadening nrf_cross_section resolution resonance_shape))
 PYTHON_FIGURES_DIR=figures/python/
-PYTHON_FIGURES=$(addprefix ${PYTHON_FIGURES_DIR}, $(addsuffix .pdf, circular_aperture_one_tenth circular_aperture_one circular_aperture_ten cross_section_absolute_zero cross_section_ln2 cross_section_room_temperature resonance_shape scattering_01 scattering_001 scattering_03 scattering_005 transmission_01 transmission_001 transmission_03 transmission_005))
+PYTHON_FIGURES=$(addprefix ${PYTHON_FIGURES_DIR}, $(addsuffix .pdf, circular_aperture_one_tenth circular_aperture_one circular_aperture_ten cross_section_absolute_zero cross_section_ln2 cross_section_room_temperature resonance_shape scattering_01 scattering_001 scattering_03 scattering_005 scattering_single_0_001 scattering_single_1_001 scattering_single_2_001 transmission_01 transmission_001 transmission_03 transmission_005 transmission_alternative_001))
 
 FIGURES_DIR=figures/
 FIGURES=$(addprefix ${FIGURES_DIR}, crystal_resonance.pdf gammasphere.jpg prism.jpg th229m.pdf)

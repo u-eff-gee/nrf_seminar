@@ -6,6 +6,11 @@
 \def \SLIDERESOLUTIONTWO {6}
 \def \SLIDERESOLUTIONTHREE {7}
 \def \SLIDERESOLUTIONFOUR {8}
+\def \SLIDEALTERNATIVERECAP {9}
+\def \SLIDEALTERNATIVE {10}
+\def \SLIDELASERRED {11}
+\def \SLIDELASERORANGE {12}
+\def \SLIDELASERGREEN {13}
 
 \begin{textblock}{15.}(0., -5.)
     \begin{tikzpicture}
@@ -42,10 +47,21 @@
         \def \STATEXSTART {3.}
         \def \STATEX {3.}
 
+        %% Alternative states
+        \def \ALTINTERMEDIATESTATEUPY {0.5}
+
         %% Transitions
         \def \EXCITATIONX {\STATEXSTART+0.2*\STATEX}
         \def \ELASTICX {\STATEXSTART+0.5*\STATEX}
         \def \INELASTICX {\STATEXSTART+0.8*\STATEX}
+
+        %% Alternative transitions
+        \def \ALTEXCITATIONX {\STATEXSTART+0.15*\STATEX}
+        \def \ALTELASTICX {\STATEXSTART+0.25*\STATEX}
+        \def \ALTEXCITATIONLOWX {\STATEXSTART+0.75*\STATEX}
+        \def \ALTDECAYLOWX {\STATEXSTART+0.85*\STATEX}
+        \def \ALTEXCITATIONUPX {\STATEXSTART+0.45*\STATEX}
+        \def \ALTDECAYUPX {\STATEXSTART+0.55*\STATEX}
 
         %% Detector
         \def \DETECTORLENGTH {2.}
@@ -57,22 +73,31 @@
 
         %%% Drawing
         %% Incoming EM waves
-        \draw [very thick, \RED, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \INREDY});
+        \visible<-\SLIDELASERRED>{
+            \draw [very thick, \RED, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \INREDY});
+        }
 
-        \draw [very thick, \ORANGE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INORANGEY});
+        \visible<-\SLIDEALTERNATIVE, \SLIDELASERORANGE>{
+            \draw [very thick, \ORANGE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INORANGEY});
+        }
 
-        \draw [very thick, \GREEN, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INGREENWAVELENGTH*2*pi/4*\x r) + \INGREENY});
+        \visible<-\SLIDEALTERNATIVE, \SLIDELASERGREEN>{
+            \draw [very thick, \GREEN, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INGREENWAVELENGTH*2*pi/4*\x r) + \INGREENY});
+        }
 
-        \draw [very thick, \BLUE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r) + \INBLUEY});
+        \visible<-\SLIDEALTERNATIVE>{
+            \draw [very thick, \BLUE, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r) + \INBLUEY});
 
-        \draw [very thick, \VIOLET, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r) + \INVIOLETY});
+            \draw [very thick, \VIOLET, domain=\INWAVESTART:\INWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r) + \INVIOLETY});
+        }
 
         %% Transmitted EM waves
-        \visible<\SLIDETRANS->{
+        \visible<\SLIDETRANS-\SLIDEALTERNATIVERECAP>{
             \draw [very thick, \RED, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \INREDY});
 
             \draw [very thick, \ORANGE, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \INORANGEY});
-
+        }
+        \visible<\SLIDETRANS-\SLIDEALTERNATIVE>{
             \draw [very thick, \BLUE, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INBLUEWAVELENGTH*2*pi/4*\x r) + \INBLUEY});
 
             \draw [very thick, \VIOLET, domain=\TRANSWAVESTART:\TRANSWAVESTART+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\INVIOLETWAVELENGTH*2*pi/4*\x r) + \INVIOLETY});
@@ -91,11 +116,18 @@
         \draw[very thick, black] (\STATEXSTART, \EXCITEDSTATEY) -- (\STATEXSTART+\STATEX, \EXCITEDSTATEY);
         \draw (\STATEXSTART + \STATEX, \EXCITEDSTATEY) node[anchor=west] {$E_x$};
 
-        %% Transitions
-        % Excitation
-        \draw[->, ultra thick, black] (\EXCITATIONX, \GROUNDSTATEY) -- (\EXCITATIONX, \EXCITEDSTATEY);
+        %% Alternative intermediate level
+        \visible<\SLIDEALTERNATIVE->{
+            \draw[very thick, black] (\STATEXSTART, \ALTINTERMEDIATESTATEUPY) -- (\STATEXSTART+\STATEX, \ALTINTERMEDIATESTATEUPY);
+            \draw (\STATEXSTART + \STATEX, \ALTINTERMEDIATESTATEUPY) node[anchor=west] {$E_j$};
+        }
 
-        \visible<\SLIDENRF->{
+        %% Transitions
+
+        \visible<\SLIDENRF-\SLIDEALTERNATIVERECAP>{
+            % Excitation
+            \draw[->, ultra thick, black] (\EXCITATIONX, \GROUNDSTATEY) -- (\EXCITATIONX, \EXCITEDSTATEY);
+            
             % Direct ground-state decay
             \draw[->, ultra thick, black] (\ELASTICX, \EXCITEDSTATEY) -- (\ELASTICX, \GROUNDSTATEY);
 
@@ -111,14 +143,48 @@
             \draw [very thick, \RED, rotate around={\SCATTERINGANGLE:(\INELASTICX, \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY))}, domain=\INELASTICX:\INELASTICX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY)});
         }
 
+        %% Alternative decays
+        \visible<\SLIDEALTERNATIVE->{
+            % Excitation
+            \draw[->, ultra thick, black] (\ALTEXCITATIONX, \GROUNDSTATEY) -- (\ALTEXCITATIONX, \EXCITEDSTATEY);
+            
+            % Direct ground-state decay
+            \draw[->, ultra thick, black] (\ALTELASTICX, \EXCITEDSTATEY) -- (\ALTELASTICX, \GROUNDSTATEY);
+        }
+        \visible<\SLIDEALTERNATIVE, \SLIDELASERGREEN>{
+            \draw [very thick, \GREEN, rotate around={\SCATTERINGANGLE:(\ALTELASTICX, 0.)}, domain=\ALTELASTICX:\ALTELASTICX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INGREENWAVELENGTH*2*pi/4*\x r)});
+        }
+
+        \visible<\SLIDEALTERNATIVE->{
+            % Excitation and decay of upper intermediate state
+            \draw[->, ultra thick, black] (\ALTEXCITATIONUPX, \GROUNDSTATEY) -- (\ALTEXCITATIONUPX, \ALTINTERMEDIATESTATEUPY);
+
+            \draw[->, ultra thick, black] (\ALTDECAYUPX, \GROUNDSTATEY) -- (\ALTDECAYUPX, \ALTINTERMEDIATESTATEUPY);
+        }
+        \visible<\SLIDEALTERNATIVE, \SLIDELASERORANGE>{
+            \draw [very thick, \ORANGE, rotate around={\SCATTERINGANGLE:(\ALTDECAYUPX, \GROUNDSTATEY + 0.5*(\ALTINTERMEDIATESTATEUPY-\GROUNDSTATEY))}, domain=\ALTDECAYUPX:\ALTDECAYUPX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \GROUNDSTATEY + 0.5*(\ALTINTERMEDIATESTATEUPY-\GROUNDSTATEY)});
+        }
+
+        \visible<\SLIDEALTERNATIVE->{
+            % Excitation and decay of upper intermediate state
+            \draw[->, ultra thick, black] (\ALTEXCITATIONLOWX, \INTERMEDIATESTATEY) -- (\ALTEXCITATIONLOWX, \GROUNDSTATEY);
+
+            \draw[->, ultra thick, black] (\ALTDECAYLOWX, \INTERMEDIATESTATEY) -- (\ALTDECAYLOWX, \GROUNDSTATEY);
+        }
+        \visible<\SLIDEALTERNATIVE, \SLIDELASERRED>{
+            \draw [very thick, \RED, rotate around={\SCATTERINGANGLE:(\ALTDECAYLOWX, \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY))}, domain=\ALTDECAYLOWX:\ALTDECAYLOWX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INREDWAVELENGTH*2*pi/4*\x r) + \GROUNDSTATEY + 0.5*(\INTERMEDIATESTATEY-\GROUNDSTATEY)});
+        }
+
         \visible<\SLIDEDETECTORS->{
-            %% Absorption detector
-            \draw[very thick, black, fill=gray]     (\ABSDETECTORX, \ABSDETECTORY) 
-            -- (\ABSDETECTORX, \ABSDETECTORY + \DETECTORRADIUS)
-            -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY + \DETECTORRADIUS)
-            -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY - \DETECTORRADIUS)
-            -- (\ABSDETECTORX, \ABSDETECTORY - \DETECTORRADIUS)
-            -- (\ABSDETECTORX, \ABSDETECTORY);
+                %% Absorption detector
+                \visible<\SLIDEALTERNATIVE>{
+                \draw[very thick, black, fill=gray]     (\ABSDETECTORX, \ABSDETECTORY) 
+                -- (\ABSDETECTORX, \ABSDETECTORY + \DETECTORRADIUS)
+                -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY + \DETECTORRADIUS)
+                -- (\ABSDETECTORX + \DETECTORLENGTH, \ABSDETECTORY - \DETECTORRADIUS)
+                -- (\ABSDETECTORX, \ABSDETECTORY - \DETECTORRADIUS)
+                -- (\ABSDETECTORX, \ABSDETECTORY);
+            }
 
             %% Scattering detector
             \draw[very thick, black, rotate around={\SCATTERINGANGLE:(\SCADETECTORX, \SCADETECTORY)}, fill=gray]     (\SCADETECTORX, \SCADETECTORY) 
@@ -136,7 +202,7 @@
 \def \SCASPECTRUMX {0.}
 \def \TRASPECTRUMX {9.5}
 
-\visible<\SLIDERESOLUTIONONE>{
+\visible<\SLIDERESOLUTIONONE, \SLIDEALTERNATIVERECAP>{
     \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
         \includegraphics[width=\textwidth]{figures/python/scattering_001.pdf}
     \end{textblock}
@@ -168,10 +234,38 @@
 
 \visible<\SLIDERESOLUTIONFOUR>{
     \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
-        \includegraphics[width=\textwidth]{figures/python/scattering_01.pdf}
+        \includegraphics[width=\textwidth]{figures/python/scattering_03.pdf}
     \end{textblock}
 
     \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
         \includegraphics[width=\textwidth]{figures/python/transmission_03.pdf}
     \end{textblock}
+}
+
+\visible<\SLIDEALTERNATIVE>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_001.pdf}
+    \end{textblock}
+
+    \begin{textblock}{\SPECTRUMWIDTH}(\TRASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/transmission_alternative_001.pdf}
+    \end{textblock}
+}
+
+\visible<\SLIDELASERRED>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_single_0_001.pdf}
+    \end{textblock}    
+}
+
+\visible<\SLIDELASERORANGE>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_single_1_001.pdf}
+    \end{textblock}    
+}
+
+\visible<\SLIDELASERGREEN>{
+    \begin{textblock}{\SPECTRUMWIDTH}(\SCASPECTRUMX, \SPECTRUMY)
+        \includegraphics[width=\textwidth]{figures/python/scattering_single_2_001.pdf}
+    \end{textblock}    
 }
