@@ -10,3 +10,6 @@
 # python output
 figures/python/*.pdf
 python/__pycache__
+
+# Figures
+figures/*.jpg

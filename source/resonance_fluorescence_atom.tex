@@ -45,7 +45,7 @@
 
         % Electrons
         % Inner electrons
-        \visible<1-2,5>{
+        \visible<1-2,5->{
             \draw [very thick, black, fill=\ELECTRONCOLOR] ($ (ATOMPOSITION) + \ORBITALINRADIUS*(0,1)$) circle [radius = \ELECTRONRADIUS];
         }
         \visible<3>{
@@ -75,13 +75,43 @@
         \visible<4>{
             \draw [->, very thick, black] (\ATOMX, \ORBITALOUTRADIUS) -- (\ATOMX, \ORBITALMIDRADIUS+\ELECTRONRADIUS);
         }
-        \visible<4-5>{
+        \visible<4->{
             \draw [very thick, \INELASTICHIGHCOLOR, domain=\ATOMX:\ATOMX+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\OUTWAVELENGTHHIGH*2*pi/4*\x r) + \ORBITALMIDRADIUS + 0.5*(\ORBITALOUTRADIUS-\ORBITALMIDRADIUS)});
         }
-        \visible<5>{
+        \visible<5->{
             \draw [->, very thick, black] (\ATOMX, \ORBITALOUTRADIUS) -- (\ATOMX, \ORBITALMIDRADIUS);
             \draw [->, very thick, black] (\ATOMX, \ORBITALMIDRADIUS) -- (\ATOMX, \ORBITALINRADIUS+\ELECTRONRADIUS);
             \draw [very thick, \INELASTICLOWCOLOR, domain=\ATOMX:\ATOMX+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\OUTWAVELENGTHLOW*2*pi/4*\x r) + \ORBITALINRADIUS + 0.5*(\ORBITALMIDRADIUS-\ORBITALINRADIUS)});
         }
     \end{tikzpicture}
+\end{textblock}
+
+\begin{textblock}{5.}(8., -6.)
+    \begin{center}
+        \begin{tabular}{ll}
+        & Atom  \\
+        \hline
+        Res. Energy & $\unit[10^{0}]{eV}$ \\
+        Res. Width & $> \unit[10^{-7}]{eV}$ \\
+        System mass $\times c^2$ & $\unit[10^{9}]{eV}$ \\
+        \end{tabular}
+    \end{center}
+\end{textblock}
+
+\begin{textblock}{7.}(8.5, -1.5)
+    \begin{itemize}
+    \visible<2->{
+        \item \textbf{Photon source}: \\ 'conventional' light sources, \textbf{laser}
+    }
+    \visible<6>{
+        \item \textbf{Photon spectroscopy}: \\
+        prisms, diffraction grids
+    }
+    \end{itemize}
+\end{textblock}
+
+\begin{textblock}{6.}(8.5, 3.2)
+    \visible<6>{
+        \includegraphics[width=\textwidth]{figures/prism.jpg}
+    }
 \end{textblock}

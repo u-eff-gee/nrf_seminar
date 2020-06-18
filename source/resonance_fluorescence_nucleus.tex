@@ -1,0 +1,172 @@
+\def \SLIDESTART {1}
+\def \SLIDEPHOTONSOURCE {2}
+\def \SLIDERADIOACTIVE {3}
+\def \SLIDEDECAY {4}
+\def \SLIDEEMISSION {5}
+\def \SLIDERECOIL {6}
+\def \SLIDEWHEEL {7}
+\def \SLIDEMOESSBAUER {8}
+\def \SLIDEBEAM {9}
+\def \SLIDEDETECTION {10}
+
+\begin{textblock}{15.}(0., -3.5)
+    \begin{tikzpicture}
+        %%% Definitions
+        %% Mathematical constants
+        \def \NWAVEFORMSAMPLES {50}
+
+        %% Incoming EM wave
+        \def \AMPLITUDE {0.4}
+        \def \WAVEFORMLENGTH {2.}
+        \def \WAVELENGTH {0.4}
+        \def \LONGWAVELENGTH {0.6}
+
+        \def \BEAMSTART {0.}
+        \def \AMPLITUDEBEAM {0.6}
+        \def \WAVEFORMLENGTHBEAM {4.}
+        \def \WAVELENGTHBEAMLOW {0.3}
+        \def \WAVELENGTHBEAMHIGH {0.5}
+
+        %% Nucleus
+        \def \NUCLEUSRADIUS {0.6}
+
+        \def \TARGETNUCLEUSX {5.5}
+        \coordinate (TARGETNUCLEUSPOSITION) at (\TARGETNUCLEUSX, 0.);
+
+        \def \SOURCENUCLEUSX {1.5}
+        \coordinate (SOURCENUCLEUSPOSITION) at (\SOURCENUCLEUSX, 0.);
+
+        \def \STATEX {2*\NUCLEUSRADIUS}
+        \def \MOTHERGROUNDSTATEY {-1.5}
+        \def \DAUGHTEREXCITEDSTATEY {-2.2}
+        \def \DAUGHTERGROUNDSTATEY {-3.8}
+
+        %% Wheel
+        \def \WHEELRADIUS {1.}
+
+        %%% Drawing
+        %% Target nucleus
+        \visible<-\SLIDEBEAM>{
+            \draw [very thick, black, dashed] (TARGETNUCLEUSPOSITION) circle [radius = \NUCLEUSRADIUS];
+        }
+
+        % Level scheme of daughter nucleus
+        \visible<\SLIDERADIOACTIVE-\SLIDEMOESSBAUER>{
+            \draw [very thick, black] (\TARGETNUCLEUSX, \DAUGHTEREXCITEDSTATEY) -- (\TARGETNUCLEUSX + \STATEX, \DAUGHTEREXCITEDSTATEY);
+            \draw [very thick, black] (\TARGETNUCLEUSX, \DAUGHTERGROUNDSTATEY) -- (\TARGETNUCLEUSX + \STATEX, \DAUGHTERGROUNDSTATEY);
+            \draw (\TARGETNUCLEUSX + 0.5*\STATEX, \DAUGHTERGROUNDSTATEY) node[anchor=north] {$^{57}$Fe};
+
+        %% Source nucleus
+            \draw [very thick, black, dashed] (SOURCENUCLEUSPOSITION) circle [radius = \NUCLEUSRADIUS];
+        }
+        % Recoil direction
+        \visible<\SLIDERECOIL>{
+            \draw [->, very thick, black] ($ (SOURCENUCLEUSPOSITION) - \NUCLEUSRADIUS*(1.,0.)$) -- ($ (SOURCENUCLEUSPOSITION) - 2*\NUCLEUSRADIUS*(1.,0.)$);
+        }
+
+        % Level scheme of mother nucleus
+        \visible<\SLIDERADIOACTIVE-\SLIDEMOESSBAUER>{
+            \draw [very thick, black] (\SOURCENUCLEUSX - 2*\NUCLEUSRADIUS, \MOTHERGROUNDSTATEY) -- (\SOURCENUCLEUSX - 2*\NUCLEUSRADIUS + \STATEX, \MOTHERGROUNDSTATEY);
+            \draw (\SOURCENUCLEUSX + 0.5*\STATEX, \DAUGHTERGROUNDSTATEY) node[anchor=north] {$^{57}$Fe};
+
+        % Level scheme of daughter nucleus
+            \draw [very thick, black] (\SOURCENUCLEUSX, \DAUGHTEREXCITEDSTATEY) -- (\SOURCENUCLEUSX + \STATEX, \DAUGHTEREXCITEDSTATEY);
+            \draw [very thick, black] (\SOURCENUCLEUSX, \DAUGHTERGROUNDSTATEY) -- (\SOURCENUCLEUSX + \STATEX, \DAUGHTERGROUNDSTATEY);
+            \draw (\SOURCENUCLEUSX - 0.5*\STATEX, \DAUGHTERGROUNDSTATEY) node[anchor=north] {$^{57}$Co};
+        }
+
+        % Transitions
+        % Electron capture
+        \visible<\SLIDEDECAY-\SLIDEMOESSBAUER>{
+            \draw [->, very thick, black] (\SOURCENUCLEUSX - 0.5*\STATEX, \MOTHERGROUNDSTATEY) -- (\SOURCENUCLEUSX + 0.5*\STATEX, \DAUGHTEREXCITEDSTATEY);
+        }
+        \visible<\SLIDEEMISSION-\SLIDEMOESSBAUER>{
+        % Decay to ground state
+            \draw [->, very thick, black] (\SOURCENUCLEUSX + 0.5*\STATEX, \DAUGHTEREXCITEDSTATEY) -- (\SOURCENUCLEUSX + 0.5*\STATEX, \DAUGHTERGROUNDSTATEY);
+        
+        % Emitted photon
+            \draw [very thick, \ORANGE, domain=\SOURCENUCLEUSX+0.5*\STATEX:\SOURCENUCLEUSX+0.5*\STATEX+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r) + \DAUGHTERGROUNDSTATEY + 0.5*(\DAUGHTEREXCITEDSTATEY - \DAUGHTERGROUNDSTATEY)});
+        }
+        \visible<\SLIDERECOIL>{
+            \draw [very thick, \RED, domain=\SOURCENUCLEUSX+0.5*\STATEX:\SOURCENUCLEUSX+0.5*\STATEX+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\LONGWAVELENGTH*2*pi/4*\x r)});
+        }
+        \visible<\SLIDEWHEEL-\SLIDEMOESSBAUER>{
+            \draw [very thick, \ORANGE, domain=\SOURCENUCLEUSX+0.5*\STATEX:\SOURCENUCLEUSX+0.5*\STATEX+\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r)});
+        }
+
+        %% Wheel
+        \visible<\SLIDEWHEEL>{
+            \draw [very thick, black] ($ (SOURCENUCLEUSPOSITION) + \WHEELRADIUS*(0,1) + \NUCLEUSRADIUS*(0,1)$) circle [radius = \WHEELRADIUS];
+            \draw [->, very thick, black] ($ (SOURCENUCLEUSPOSITION) + \WHEELRADIUS*(0,1) + \NUCLEUSRADIUS*(0,1) + 0.5*\WHEELRADIUS*(1., 0.)$) arc [start angle = 0, end angle = 250, radius = 0.5*\WHEELRADIUS];
+        }
+
+        \visible<\SLIDEMOESSBAUER>{
+            %% Neighboring atoms
+            % Top left atom
+            \draw [very thick, black, dashed] ($ (SOURCENUCLEUSPOSITION) + 3*\NUCLEUSRADIUS*(0,1)$) circle [radius = \NUCLEUSRADIUS];
+
+            % Top right atom
+            \draw [very thick, black, dashed] ($ (SOURCENUCLEUSPOSITION) + 3*\NUCLEUSRADIUS*(1,1)$) circle [radius = \NUCLEUSRADIUS];
+
+            % Bottom right atom
+            \draw [very thick, black, dashed] ($ (SOURCENUCLEUSPOSITION) + 3*\NUCLEUSRADIUS*(1,0)$) circle [radius = \NUCLEUSRADIUS];
+
+            % Connection bottom left to top left
+            \draw [very thick, black] ($ (SOURCENUCLEUSPOSITION) + \NUCLEUSRADIUS*(0,1)$) -- ($ (SOURCENUCLEUSPOSITION) + 2*\NUCLEUSRADIUS*(0,1)$);
+
+            % Connection top left to top right
+            \draw [very thick, black] ($ (SOURCENUCLEUSPOSITION) + 3*\NUCLEUSRADIUS*(0,1) + \NUCLEUSRADIUS*(1,0)$) -- ($ (SOURCENUCLEUSPOSITION) + 3*\NUCLEUSRADIUS*(0,1) + 2*\NUCLEUSRADIUS*(1,0)$);
+
+            % Connection top right to bottom right
+            \draw [very thick, black] ($ (SOURCENUCLEUSPOSITION) + 2*\NUCLEUSRADIUS*(0,1) + 3*\NUCLEUSRADIUS*(1,0)$) -- ($ (SOURCENUCLEUSPOSITION) + 1*\NUCLEUSRADIUS*(0,1) + 3*\NUCLEUSRADIUS*(1,0)$);
+
+            % Connection bottom left to bottom right
+            \draw [very thick, black] ($ (SOURCENUCLEUSPOSITION) + \NUCLEUSRADIUS*(1,0)$) -- ($ (SOURCENUCLEUSPOSITION) + 2*\NUCLEUSRADIUS*(1,0)$);
+        }
+
+        \visible<\SLIDEBEAM>{
+            \draw [very thick, \ORANGE, domain=\BEAMSTART:\BEAMSTART+\WAVEFORMLENGTHBEAM, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDEBEAM*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r)});
+
+            \draw [very thick, \RED, domain=\BEAMSTART:\BEAMSTART+\WAVEFORMLENGTHBEAM, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDEBEAM*sin(\WAVEFORMLENGTH/\WAVELENGTHBEAMHIGH*2*pi/4*\x r)});
+
+            \draw [very thick, \YELLOW, domain=\BEAMSTART:\BEAMSTART+\WAVEFORMLENGTHBEAM, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDEBEAM*sin(\WAVEFORMLENGTH/\WAVELENGTHBEAMLOW*2*pi/4*\x r)});
+        }
+    \end{tikzpicture}
+\end{textblock}
+
+\begin{textblock}{5.}(7., -6.)
+    \begin{center}
+        \begin{tabular}{lll}
+        & Atom & Nucleus \\
+        \hline
+        Res. Energy & $\unit[10^{0}]{eV}$ & $\unit[10^{6}]{eV}$ \\
+        Res. Width & $\unit[10^{-7}]{eV}$ & $\unit[10^{0}]{eV}$ \\
+        System mass $\times c^2$ & $\unit[10^{9}]{eV}$ & $\unit[10^{9}]{eV}$ \\
+        \end{tabular}
+    \end{center}
+\end{textblock}
+
+\begin{textblock}{6.}(8.5, -1.5)
+    \begin{itemize}
+    \visible<\SLIDEPHOTONSOURCE->{
+        \item \textbf{Photon source}: \\ 
+        radioactive sources \visible<\SLIDEWHEEL->{[Moon (1951)\visible<\SLIDEMOESSBAUER->{, M\"ossbauer (1958)}]}\visible<\SLIDEBEAM->{, photon beams [Hayward et al. (1957)]}
+    }
+    \visible<\SLIDEDETECTION>{
+        \item \textbf{Photon spectroscopy}: \\
+        particle detectors
+    }
+    \end{itemize}
+\end{textblock}
+
+\begin{textblock}{8.}(0., -5.)
+    \visible<\SLIDERECOIL-\SLIDEMOESSBAUER>{
+        $\text{relative recoil} \approx \frac{\text{Photon energy}}{\visible<\SLIDEMOESSBAUER>{N \times } \text{Nuclear mass} \times c^2}$
+    }
+\end{textblock}
+
+\begin{textblock}{6.}(0., -2.)
+    \visible<\SLIDEDETECTION>{
+        \includegraphics[width=\textwidth]{figures/gammasphere.jpg}
+    }
+\end{textblock}

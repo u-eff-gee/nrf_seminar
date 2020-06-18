@@ -11,6 +11,8 @@
 \def \RED {red}
 \def \VIOLET {violet}
 \def \YELLOW {lime}
+\usepackage{units}
+\usepackage{url}
 
 \input{source/footer.tex}
 
@@ -45,19 +47,12 @@
 
 \begin{frame}
     \frametitle{Resonance Fluorescence in Atoms}
-    \input{source/resonance_fluorescence_atom.tex}
+    %\input{source/resonance_fluorescence_atom.tex}
 \end{frame}
 
 \begin{frame}
     \frametitle{Resonance Fluorescence in Nuclei}
-    \begin{textblock}{15.}(0., -5.)
-        \begin{itemize}
-            \item How to achieve resonance fluorescence
-            \item Recoil problem
-            \item Solution of the recoil problem
-            \item Artificial photon sources
-        \end{itemize}
-    \end{textblock}
+    \input{source/resonance_fluorescence_nucleus.tex}
 \end{frame}
 
 \section{Basics}
@@ -137,6 +132,16 @@
 
 \begin{frame}
     \frametitle{Isotope-selective Scanning}
+\end{frame}
+
+\begin{frame}
+    \frametitle{References}
+    \begin{textblock}{15.}(0., -5.)
+    \begin{itemize}
+        \item Prism: \url{https://de.wikipedia.org/wiki/Prisma_(Optik)}
+        \item Gammasphere \url{https://www.phy.anl.gov/gammasphere/}
+    \end{itemize}
+    \end{textblock}
 \end{frame}
 
 \end{document}
