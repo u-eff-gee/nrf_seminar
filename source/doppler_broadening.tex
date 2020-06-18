@@ -1,0 +1,94 @@
+\def \SLIDEABSOLUTEZERO {1}
+\def \SLIDELN {2}
+\def \SLIDEREST {3}
+\def \SLIDEROOM {4}
+\def \SLIDECRISTAL {5}
+
+\begin{textblock}{9.}(0., -4.)
+    \visible<\SLIDEABSOLUTEZERO>{
+        \includegraphics[width=\textwidth]{figures/python/cross_section_absolute_zero.pdf}
+    }
+\end{textblock}
+\begin{textblock}{9.}(0., -4.)
+    \visible<\SLIDELN-\SLIDEREST>{
+        \includegraphics[width=\textwidth]{figures/python/cross_section_ln2.pdf}
+    }
+\end{textblock}
+\begin{textblock}{9.}(0., -4.)
+    \visible<\SLIDEROOM>{
+        \includegraphics[width=\textwidth]{figures/python/cross_section_room_temperature.pdf}
+    }
+\end{textblock}
+\begin{textblock}{7.}(0., -5.)
+    \visible<\SLIDECRISTAL>{
+        \includegraphics[width=\textwidth]{figures/crystal_resonance.pdf}
+    }
+\end{textblock}
+\begin{textblock}{7.}(8., 6.)
+    \visible<\SLIDECRISTAL>{
+        Connection to condensed-matter physics [Lamb, (1939)]
+    }
+\end{textblock}
+
+\begin{textblock}{8.}(9., -4.)
+    \begin{tikzpicture}
+        %%% Definitions
+        %% Mathematical constants
+        \def \NWAVEFORMSAMPLES {50}
+
+        %% Incoming EM wave
+        \def \AMPLITUDE {0.6}
+        \def \WAVEFORMLENGTH {2.}
+        \def \WAVELENGTH {0.5}
+        \def \SHORTWAVELENGTH {0.4}
+        \def \LONGWAVELENGTH {0.6}
+
+        %% Inertial frames
+        \def \COMY {1.5}
+        \def \RESTY {-1.5}
+        \def \INERTIALFRAMELABELY {1.}
+
+        %% Nucleus
+        \def \NUCLEUSX {4.}
+        \coordinate (NUCLEUSCOMPOSITION) at (\NUCLEUSX, \COMY);
+        \coordinate (NUCLEUSRESTPOSITION) at (\NUCLEUSX, \RESTY);
+        \def \NUCLEUSRADIUS {0.5}
+
+        %%% Drawings
+        %% Inertial frame labels
+        % COM
+        \draw (0.5*\NUCLEUSX, \COMY+\INERTIALFRAMELABELY) node[anchor=south] {Center-of-mass frame};
+        % Rest
+        \visible<\SLIDEREST->{
+            \draw (0.5*\NUCLEUSX, \RESTY+\INERTIALFRAMELABELY) node[anchor=south] {Nucleus-at-rest frame};
+        }
+
+        %% Nucleus
+        % COM
+        \draw [very thick, black, dashed] (NUCLEUSCOMPOSITION) circle [radius=\NUCLEUSRADIUS];
+        % Rest
+        \visible<\SLIDEREST->{
+            \draw [very thick, black, dashed] (NUCLEUSRESTPOSITION) circle [radius=\NUCLEUSRADIUS];
+        }
+
+       % Slow movement
+        \visible<\SLIDELN-\SLIDEREST>{
+            \draw [->, very thick, black] ($ (NUCLEUSCOMPOSITION) - \NUCLEUSRADIUS*(1,0) $) -- ($ (NUCLEUSCOMPOSITION) - 2*\NUCLEUSRADIUS*(1,0) $);
+        }
+        % Fast movement
+        \visible<\SLIDEROOM>{
+            \draw [->, very thick, black] ($ (NUCLEUSCOMPOSITION) - \NUCLEUSRADIUS*(1,0) $) -- ($ (NUCLEUSCOMPOSITION) - 3*\NUCLEUSRADIUS*(1,0) $);
+        }
+
+        %% Incoming wave
+        % COM
+        \draw [very thick, \RED, domain=0.:\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\LONGWAVELENGTH*2*pi/4*\x r) + \COMY});
+        % Rest
+        \visible<\SLIDEREST>{
+            \draw [very thick, \ORANGE, domain=0.:\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\WAVELENGTH*2*pi/4*\x r) + \RESTY});
+        }
+        \visible<\SLIDEROOM->{
+            \draw [very thick, \YELLOW, domain=0.:\WAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\WAVEFORMLENGTH/\SHORTWAVELENGTH*2*pi/4*\x r) + \RESTY});
+        }
+    \end{tikzpicture}
+\end{textblock}
