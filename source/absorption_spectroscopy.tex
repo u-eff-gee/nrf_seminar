@@ -176,7 +176,7 @@
             % Excitation and decay of upper intermediate state
             \draw[->, ultra thick, black] (\ALTEXCITATIONUPX, \GROUNDSTATEY) -- (\ALTEXCITATIONUPX, \ALTINTERMEDIATESTATEUPY);
 
-            \draw[->, ultra thick, black] (\ALTDECAYUPX, \GROUNDSTATEY) -- (\ALTDECAYUPX, \ALTINTERMEDIATESTATEUPY);
+            \draw[->, ultra thick, black] (\ALTDECAYUPX, \ALTINTERMEDIATESTATEUPY) -- (\ALTDECAYUPX, \GROUNDSTATEY);
         }
         \visible<\SLIDEALTERNATIVE, \SLIDELASERORANGE>{
             \draw [very thick, \ORANGE, rotate around={\SCATTERINGANGLE:(\ALTDECAYUPX, \GROUNDSTATEY + 0.5*(\ALTINTERMEDIATESTATEUPY-\GROUNDSTATEY))}, domain=\ALTDECAYUPX:\ALTDECAYUPX+\SCAWAVEFORMLENGTH, samples=\NWAVEFORMSAMPLES] plot (\x, {\AMPLITUDE*sin(\SCAWAVEFORMLENGTH/\INORANGEWAVELENGTH*2*pi/4*\x r) + \GROUNDSTATEY + 0.5*(\ALTINTERMEDIATESTATEUPY-\GROUNDSTATEY)});
@@ -184,7 +184,7 @@
 
         \visible<\SLIDEALTERNATIVE->{
             % Excitation and decay of upper intermediate state
-            \draw[->, ultra thick, black] (\ALTEXCITATIONLOWX, \INTERMEDIATESTATEY) -- (\ALTEXCITATIONLOWX, \GROUNDSTATEY);
+            \draw[->, ultra thick, black] (\ALTEXCITATIONLOWX, \GROUNDSTATEY) --(\ALTEXCITATIONLOWX, \INTERMEDIATESTATEY);
 
             \draw[->, ultra thick, black] (\ALTDECAYLOWX, \INTERMEDIATESTATEY) -- (\ALTDECAYLOWX, \GROUNDSTATEY);
         }
