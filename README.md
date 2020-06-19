@@ -9,7 +9,8 @@ Two previous talks in the same series by Prof. M. Ahmed ('Exploring Neutron Star
 The repository contains the LaTeX and python code to generate all slides.
 Instructions for the compilation of the code are given below.
 Some copyrighted figures have been removed from the `figure` directory.
-Please see the reference section on how to find them.
+In the presentation, they respective `includegraphics` commands have been commented, and a descriptive text is displayed instead.
+Please refer to the reference section for information on the sources.
 
 The 70 years mentioned in the subtitle refer to the first experimental demonstration of NRF by Moon in 1951, and the recent developments, after the first use of quasi-monochromatic, polarized photon beams for NRF experiments, are interpreted as a 'renaissance'.
 
