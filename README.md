@@ -6,11 +6,11 @@ The abstract can be found in the `abstract.txt` file.
 It was intended to be an introduction to the nuclear resonance fluorescence (NRF) method for undergraduate (physics) students with a basic knowledge of (relativistic) mechanics (conservation of momentum) wave optics (diffraction, Doppler effect) and atomic physics (Bohr model of the atom, electromagnetic transitions, spectroscopy).
 Two previous talks in the same series by Prof. M. Ahmed ('Exploring Neutron Stars on Earth') and Prof. R. V. F. Janssens (' It’s Nuclear: The Hulk, Gamma rays, the Atomic Nucleus, and Shining Stars') had already introduced basic concepts of nuclear physics (common units, the nuclear chart, transitions, decays, nuclear astrophysics) and gamma-ray spectroscopy.
 
-The repository contains the LaTeX and python code to generate all slides.
+The repository provides the slides in a PDF file, but it also contains the LaTeX and python code to generate all slides.
 Instructions for the compilation of the code are given below.
-Some copyrighted figures have been removed from the `figure` directory.
-In the presentation, they respective `includegraphics` commands have been commented, and a descriptive text is displayed instead.
-Please refer to the reference section for information on the sources.
+Some copyrighted figures have been removed from the PDF and the `figure` directory.
+In the code, the respective `includegraphics` commands have been commented, and a descriptive text is displayed instead.
+Please refer to the reference section for information on the sources of these figures.
 
 The 70 years mentioned in the subtitle refer to the first experimental demonstration of NRF by Moon in 1951, and the recent developments, after the first use of quasi-monochromatic, polarized photon beams for NRF experiments, are interpreted as a 'renaissance'.
 
@@ -38,8 +38,8 @@ make clean
 
 Depending on the system, it may be necessary to rename the `LATEX` and `PYTHON` executables in the `Makefile`.
 
-To speed up the build process, the number of samples (`NWAVEFORMSAMPLES`) for plotting sine curves ('photons') has been set to a relatively low value.
-Therefore, some wave trains will not look smooth with the default settings.
+To speed up the build process, the number of samples (`NWAVEFORMSAMPLES`) for plotting sine curves ('photons') can be set to a lower value.
+In that case, some wave trains will not look smooth.
 
 ## License
 

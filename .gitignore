@@ -3,14 +3,9 @@
 *.log
 *.nav
 *.out
-*.pdf
 *.snm
 *.toc
 
 # python output
 figures/python/*.pdf
 python/__pycache__
-
-# Figures
-figures/*.jpg
-figures/*.png
