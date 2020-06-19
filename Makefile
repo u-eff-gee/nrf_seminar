@@ -2,7 +2,7 @@ LATEX=pdflatex
 
 PROJECT=nrf_seminar
 LATEX_SOURCE_DIR=source/
-LATEX_SOURCE=$(addprefix ${LATEX_SOURCE_DIR}, $(addsuffix .tex, absorption_spectroscopy bremsstrahlung doppler_broadening footer quasimonochromatic resonance_fluorescence resonance_fluorescence_atom resonance_fluorescence_nucleus r_process scattering scanning spectrum_summary title))
+LATEX_SOURCE=$(addprefix ${LATEX_SOURCE_DIR}, $(addsuffix .tex, absorption_spectroscopy bremsstrahlung doppler_broadening figures figures_2 footer literature quasimonochromatic resonance_fluorescence resonance_fluorescence_atom resonance_fluorescence_nucleus r_process scattering scanning spectrum_summary title))
 LATEX_OUTPUT=$(addprefix ${PROJECT}, .aux .log .nav .out .pdf .snm .toc)
 
 PYTHON=python

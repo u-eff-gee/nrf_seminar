@@ -2,6 +2,7 @@
 ## Renaissance of a 70-year-old Technique
 
 This talk was prepared for the 'Advances in Physics' seminar at [TUNL](https://tunl.duke.edu/).
+The abstract can be found in the `abstract.txt` file.
 It was intended to be an introduction to the nuclear resonance fluorescence (NRF) method for undergraduate (physics) students with a basic knowledge of (relativistic) mechanics (conservation of momentum) wave optics (diffraction, Doppler effect) and atomic physics (Bohr model of the atom, electromagnetic transitions, spectroscopy).
 Two previous talks in the same series by Prof. M. Ahmed ('Exploring Neutron Stars on Earth') and Prof. R. V. F. Janssens (' It’s Nuclear: The Hulk, Gamma rays, the Atomic Nucleus, and Shining Stars') had already introduced basic concepts of nuclear physics (common units, the nuclear chart, transitions, decays, nuclear astrophysics) and gamma-ray spectroscopy.
 
@@ -10,7 +11,7 @@ Instructions for the compilation of the code are given below.
 Some copyrighted figures have been removed from the `figure` directory.
 Please see the reference section on how to find them.
 
-The abstract can be found in the `abstract.txt` file.
+The 70 years mentioned in the subtitle refer to the first experimental demonstration of NRF by Moon in 1951, and the recent developments, after the first use of quasi-monochromatic, polarized photon beams for NRF experiments, are interpreted as a 'renaissance'.
 
 ## Prerequisites
 
